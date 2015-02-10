@@ -1,0 +1,90 @@
+import org.netkernel.layer0.nkf.*
+import java.util.regex.*
+import org.json.*;
+import groovy.json.JsonSlurper
+  
+slide = ""
+  
+try {
+  json=context.source("arg:operand", String.class);
+  //Tidy up any whitespace to prevent "unterminated string literal" in JSON parser
+  json=json.replaceAll("\\n", " ")
+  json=json.replaceAll("\\r", " ")
+  
+  j = new JsonSlurper().parseText(json)
+  
+  title = j?.title
+  subtitle = j?.subtitle
+  imageURL = j?.image.url
+  imageStyle = j?.image.style
+  licenseURL = j?.license?.url
+  licenseText = j?.license?.text
+  creditURL = j?.credit.url
+  creditText = j?.credit.text
+    
+  titleSection = ""
+  subtitleSection = ""
+  imageStyleSection = ""
+  footerSection = ""
+    
+  if(title) {
+    titleSection = """
+      <hgroup>
+        <h2>${title}</h2>
+        ${subtitle ? subtitle : ""}
+      </hgroup>
+    """
+  }
+
+  if(imageStyle) {
+    imageStyleSection = """style="${imageStyle}" """
+  }
+  
+  if(licenseURL || licenseText || creditURL || creditText) {
+    creditSection = ""
+    licenseSection = ""
+    
+    if(licenseURL || licenseText) {
+      if(licenseText == null) {
+        licenseText = licenseURL
+      }
+      
+      licenseSection = """
+        License: <a href="${licenseURL}">${licenseText}</a>
+      """
+    }
+    
+    if(creditURL || creditText) {
+      if(creditText == null) {
+        creditText = creditURL
+      }
+      
+      creditSection = """
+        Credit: <a href="${creditURL}">${creditText}</a>
+      """
+    }
+      
+    footerSection = """
+      <footer class="source black" style="margin-top: 5px;">
+          ${creditSection}
+          ${licenseSection}
+      </footer>
+    """
+  }
+  
+  slide="""
+  <slide>
+    ${titleSection}
+    <article class="flexbox vcenter" style="margin-top: 0px;">
+      <img src="${imageURL}" ${imageStyleSection}/>
+      ${footerSection}
+    </article>
+  </slide>
+  """
+} catch(Throwable t) {
+  slide="""
+    <slide><pre style='color: red;'>${t.getMessage()}</pre></slide>
+  """
+}
+    
+context.createResponseFrom(slide.toString())
