@@ -39,7 +39,7 @@
     "subtitle" : "A nice place to live",
     "image" : {
        "url" : "/wink/res/wink/common/img/herefordshire.jpg",
-       "style" : "height : 450px;"
+       "style" : "height : 425px;"
     },
     "license" : { 
        "url": "https://creativecommons.org/licenses/by/2.0/",
@@ -64,3 +64,34 @@
     }
    }
 {/wkcenteredimageslide}
+
+{wkfullscreenimageslide}
+   {
+    "image" : {
+       "url" : "/wink/res/wink/common/img/herefordshire.jpg"
+    },
+    "license" : { 
+       "url": "https://creativecommons.org/licenses/by/2.0/",
+       "text" : "CC BY 2.0"
+    },
+    "credit" : {
+       "url" : "https://www.flickr.com/photos/leshaines123/4237233568",
+       "text" : "Les Haines"
+    }
+   }
+{/wkfullscreenimageslide}
+
+{wkfullscreenimageslide}
+   {
+    "title" : {
+       "text" : "Herefordshire",
+       "class" : "black"
+    },
+    "image" : {
+       "url" : "/wink/res/wink/common/img/herefordshire.jpg"
+    },
+    "credit" : {
+       "url" : "https://www.flickr.com/photos/leshaines123/4237233568"
+    }
+   }
+{/wkfullscreenimageslide}

@@ -27,11 +27,15 @@ try {
   imageStyleSection = ""
   footerSection = ""
     
+  if(subtitle) {
+    subtitleSection = """<h3>${subtitle}</h3> """
+  }
+    
   if(title) {
     titleSection = """
       <hgroup>
         <h2>${title}</h2>
-        ${subtitle ? subtitle : ""}
+        ${subtitleSection}
       </hgroup>
     """
   }
