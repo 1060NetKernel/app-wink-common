@@ -8,6 +8,17 @@
 }
 {/slinki}
 
+{wktitleslide}
+  {
+    "title" : "Common WiNK Elements",
+    "subtitle" : "Templates, Macros and Examples",
+    "author" : [ 
+      { "name" : "Brian Sletten", "twitter" : "bsletten" }, 
+      { "name" : "Dr. Peter Rodgers", "twitter" : "pjr1060" }
+    ],
+  }
+{/wktitleslide}
+
 {wkcenteredimageslide}
    {
     "image" : {
