@@ -1,0 +1,65 @@
+import org.netkernel.layer0.nkf.*
+import java.util.regex.*
+import org.json.*;
+import groovy.json.JsonSlurper
+import groovy.xml.MarkupBuilder
+  
+slide = ""
+  
+try {
+  json=context.source("arg:operand", String.class);
+  //Tidy up any whitespace to prevent "unterminated string literal" in JSON parser
+  json=json.replaceAll("\\n", " ")
+  json=json.replaceAll("\\r", " ")
+  
+  j = new JsonSlurper().parseText(json)
+  
+  title = j?.title?.text
+  subtitle = j?.subtitle
+  build = j?.build
+  bullets = j.bullets
+    
+  buildClass = build ? "build" : ""
+    
+  sw = new StringWriter()
+  mb = new MarkupBuilder(sw)
+    
+  mb.slide {
+    hgroup {
+      if(title) {
+        h2(title)
+      }
+      
+      if(subtitle) {
+        h3(subtitle)
+      }
+    }
+    
+    article {
+      ul(class: buildClass) {
+        bullets.each { b ->
+          if(b instanceof String) {
+            li(b)
+          } else if(b instanceof ArrayList) {
+            ul {
+              b.each { bi ->
+                li(class: buildClass, bi)
+              }
+            }
+          } else {
+            println "WAT"
+          }
+        }
+      }
+    }
+  }
+  
+  slide = sw
+
+} catch(Throwable t) {
+  slide="""
+    <slide><pre style='color: red;'>${t.getMessage()}</pre></slide>
+  """
+}
+    
+context.createResponseFrom(slide.toString())
