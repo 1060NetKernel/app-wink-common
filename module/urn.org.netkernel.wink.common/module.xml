@@ -1,0 +1,36 @@
+<module version="2.0">
+	<meta>
+		<identity>
+			<uri>urn:org:netkernel:wink:common</uri>
+			<version>1.0.0</version>
+		</identity>
+		<info>
+			<name>Common WiNK Templates and Resources</name>
+			<description>A Reusable Module for SliNKi SLide Presentations</description>
+		</info>
+	</meta>
+	<system>
+		<dynamic/>
+	</system>
+	<rootspace>
+		<fileset>
+			<regex>res:/etc/system/SimpleDynamicImportHook.xml</regex>
+		</fileset>
+		<mapper>
+			<config>
+				<import>res:/resources/mapper.xml</import>
+			</config>
+			<space>
+				<fileset>
+					<regex>res:/resources/.*</regex>
+				</fileset>
+				<import>
+					<uri>urn:org:netkernel:lang:groovy</uri>
+				</import>
+				<import>
+					<uri>urn:org:netkernel:html5:frameworks</uri>
+				</import>
+			</space>
+		</mapper>
+	</rootspace>
+</module>

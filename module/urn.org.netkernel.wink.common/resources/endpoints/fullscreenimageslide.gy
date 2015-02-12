@@ -1,0 +1,98 @@
+import org.netkernel.layer0.nkf.*
+import java.util.regex.*
+import org.json.*;
+import groovy.json.JsonSlurper
+  
+slide = ""
+  
+try {
+  json=context.source("arg:operand", String.class);
+  //Tidy up any whitespace to prevent "unterminated string literal" in JSON parser
+  json=json.replaceAll("\\n", " ")
+  json=json.replaceAll("\\r", " ")
+  
+  j = new JsonSlurper().parseText(json)
+  
+  title = j?.title?.text
+  titleClass = j?.title?.class
+  titleStyle = j?.title?.style
+  titleloc = j?.titleloc
+  subtitle = j?.subtitle
+  imageURL = j?.image.url
+//  imageStyle = j?.image.style
+  licenseURL = j?.license?.url
+  licenseText = j?.license?.text
+  creditURL = j?.credit.url
+  creditText = j?.credit.text
+    
+  titleSection = ""
+  subtitleSection = ""
+  imageStyleSection = ""
+  footerSection = ""
+    
+  if(titleloc == null) {
+    titleloc = "vright"
+  }
+  
+  if(titleClass == null) {
+    titleClass = "white"
+  }
+    
+  if(subtitle) {
+    subtitleSection = """<h3>${subtitle}</h3> """
+  }
+    
+  if(title) {
+    titleSection = """
+      <hgroup>
+        <h2 class="${titleClass}">${title}</h2>
+        ${subtitleSection}
+      </hgroup>
+    """
+  }
+  
+  if(licenseURL || licenseText || creditURL || creditText) {
+    creditSection = ""
+    licenseSection = ""
+    
+    if(licenseURL || licenseText) {
+      if(licenseText == null) {
+        licenseText = licenseURL
+      }
+      
+      licenseSection = """
+        License: <a href="${licenseURL}">${licenseText}</a>
+      """
+    }
+    
+    if(creditURL || creditText) {
+      if(creditText == null) {
+        creditText = creditURL
+      }
+      
+      creditSection = """
+        Credit: <a href="${creditURL}">${creditText}</a>
+      """
+    }
+      
+    footerSection = """
+      <footer class="source white" style="margin-top: 5px;">
+          <p>${creditSection}</p>
+          <p>${licenseSection}</p>
+      </footer>
+    """
+  }
+  
+  slide="""
+  <slide class="fill nobackground" style="background-image: url(${imageURL}); -webkit-background-size: cover; background-size: cover; -webkit-print-color-adjust: exact;a">
+    <article class="flexbox ${titleloc}">${titleSection}</article>
+    ${footerSection}
+  </slide>
+  """
+} catch(Throwable t) {
+  slide="""
+    <slide><pre style='color: red;'>${t.getMessage()}</pre></slide>
+  """
+}
+    
+context.createResponseFrom(slide.toString())

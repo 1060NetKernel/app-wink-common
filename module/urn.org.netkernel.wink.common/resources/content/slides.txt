@@ -1,0 +1,144 @@
+{slinki}
+{
+	 "title" : "Common WiNK Slide Elements",
+	 "copyright" : "© 2015, Brian Sletten, Peter Rodgers",
+	 "css" : [
+	    { "href" : "http://localhost:8080/org/netkernel/html5/framework/fontawesome/4.1.0/css/font-awesome.min.css"}
+			]
+}
+{/slinki}
+
+{wktitleslide}
+  {
+    "title" : "Common WiNK Elements",
+    "subtitle" : "Templates, Macros and Examples",
+    "author" : [ 
+      { "name" : "Brian Sletten", "twitter" : "bsletten" }, 
+      { "name" : "Dr. Peter Rodgers", "twitter" : "pjr1060" }
+    ],
+  }
+{/wktitleslide}
+
+{wkcenteredimageslide}
+   {
+    "image" : {
+       "url" : "/wink/res/wink/common/img/herefordshire.jpg",
+       "style" : "height : 500px;"
+    },
+    "license" : { 
+       "url": "https://creativecommons.org/licenses/by/2.0/",
+       "text" : "CC BY 2.0"
+    },
+    "credit" : {
+       "url" : "https://www.flickr.com/photos/leshaines123/4237233568",
+       "text" : "Les Haines"
+    }
+   }
+{/wkcenteredimageslide}
+
+
+{wkcenteredimageslide}
+   {
+    "title" : "Herefordshire",
+    "subtitle" : "A nice place to live",
+    "image" : {
+       "url" : "/wink/res/wink/common/img/herefordshire.jpg",
+       "style" : "height : 425px;"
+    },
+    "license" : { 
+       "url": "https://creativecommons.org/licenses/by/2.0/",
+       "text" : "CC BY 2.0"
+    },
+    "credit" : {
+       "url" : "https://www.flickr.com/photos/leshaines123/4237233568",
+       "text" : "Les Haines"
+    }
+   }
+{/wkcenteredimageslide}
+
+{wkcenteredimageslide}
+   {
+    "title" : "Herefordshire",
+    "image" : {
+       "url" : "/wink/res/wink/common/img/herefordshire.jpg",
+       "style" : "height : 475px;"
+    },
+    "credit" : {
+       "url" : "https://www.flickr.com/photos/leshaines123/4237233568"
+    }
+   }
+{/wkcenteredimageslide}
+
+{wkfullscreenimageslide}
+   {
+    "image" : {
+       "url" : "/wink/res/wink/common/img/herefordshire.jpg"
+    },
+    "license" : { 
+       "url": "https://creativecommons.org/licenses/by/2.0/",
+       "text" : "CC BY 2.0"
+    },
+    "credit" : {
+       "url" : "https://www.flickr.com/photos/leshaines123/4237233568",
+       "text" : "Les Haines"
+    }
+   }
+{/wkfullscreenimageslide}
+
+{wkfullscreenimageslide}
+   {
+    "title" : {
+       "text" : "Herefordshire",
+       "class" : "black"
+    },
+    "image" : {
+       "url" : "/wink/res/wink/common/img/herefordshire.jpg"
+    },
+    "credit" : {
+       "url" : "https://www.flickr.com/photos/leshaines123/4237233568"
+    }
+   }
+{/wkfullscreenimageslide}
+
+{wkbulletslide}
+  {
+    "title" : {
+      "text" : "Bullet Slide With Build"
+    },
+    "bullets" : [
+       "First Point",
+       "Second Point",
+       [
+          "Subpoint A",
+          "Subpoint B"
+       ],
+       "Third Point",
+       [
+          "Subpoint 1",
+          "Subpoint 2"
+       ]
+    ],
+    "build" : "true"
+  }
+{/wkbulletslide}
+
+{wkbulletslide}
+  {
+    "title" : {
+      "text" : "Bullet Slide"
+    },
+    "bullets" : [
+       "First Point",
+       "Second Point",
+       [
+          "Subpoint A",
+          "Subpoint B"
+       ],
+       "Third Point",
+       [
+          "Subpoint 1",
+          "Subpoint 2"
+       ]
+    ]
+  }
+{/wkbulletslide}

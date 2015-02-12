@@ -1,0 +1,70 @@
+import org.netkernel.layer0.nkf.*
+import java.util.regex.*
+import org.json.*;
+import groovy.json.JsonSlurper
+  
+slide = ""
+  
+try {
+  json=context.source("arg:operand", String.class);
+  //Tidy up any whitespace to prevent "unterminated string literal" in JSON parser
+  json=json.replaceAll("\\n", " ")
+  json=json.replaceAll("\\r", " ")
+  
+  j = new JsonSlurper().parseText(json)
+  
+  title = j?.title
+  subtitle = j?.subtitle
+  imageURL = j?.image?.url
+  author = j?.author
+  twitter = j?.twitter
+    
+  date = context.source("meta:wink:common:date")
+    
+  titleSection = "<h1>${title}</h1>"
+    
+  if(subtitle) {
+    titleSection += "<h2>${subtitle}</h2>"
+  }
+  
+  authorSection = ""
+  first = true
+    
+  author.each { a ->
+    style = "font-size: 110%;"
+    if(!first) {
+      style += " margin-top: 0.5em;"
+    } else {
+      style += " margin-top: 2em;"
+    }
+    
+    authorSection += """<p style="${style}">${a.name}"""
+    if(a.twitter) {
+      authorSection += """ (<i class="fa fa-twitter"> </i><a href="http://twitter.com/${a.twitter}">@${a.twitter}</a>)"""
+    }
+    authorSection += "</p>"
+      
+    first = false
+  }
+  
+  additionalLogoSection = ""
+  
+  slide="""
+    <slide class="title-slide segue nobackground">
+    <aside class="gdbar"><img src="/wink/res/wink/common/img/cross.png"/>
+    </aside>
+    ${additionalLogoSection}
+    <hgroup class="auto-fadein">
+       ${titleSection}
+       ${authorSection}
+       <br/>${date}
+    </hgroup>
+    </slide>
+    """
+} catch(Throwable t) {
+  slide="""
+    <slide><pre style='color: red;'>${t.getMessage()}</pre></slide>
+  """
+}
+    
+context.createResponseFrom(slide.toString())

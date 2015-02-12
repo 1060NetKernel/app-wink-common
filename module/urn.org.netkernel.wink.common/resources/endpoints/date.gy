@@ -1,0 +1,2 @@
+resp = context.createResponseFrom(new Date().format('MM/dd/yyyy'))
+resp.setExpiry(resp.EXPIRY_ALWAYS)
