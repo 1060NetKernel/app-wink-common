@@ -3,7 +3,8 @@
 	 "title" : "Common WiNK Slide Elements",
 	 "copyright" : "© 2015, Brian Sletten, Peter Rodgers",
 	 "css" : [
-	    { "href" : "http://localhost:8080/org/netkernel/html5/framework/fontawesome/4.1.0/css/font-awesome.min.css"}
+	    { "href" : "http://localhost:8080/org/netkernel/html5/framework/fontawesome/4.1.0/css/font-awesome.min.css"},
+	    { "href" : "/wink/res/wink/common/css/common.css" }
 			]
 }
 {/slinki}
@@ -18,6 +19,12 @@
     ],
   }
 {/wktitleslide}
+
+{wksegueslide}
+ {
+   "title" : "Images"
+ }
+{/wksegueslide}
 
 {wkcenteredimageslide}
    {
@@ -100,6 +107,12 @@
    }
 {/wkfullscreenimageslide}
 
+{wksegueslide}
+ {
+   "title" : "Bullet Slides"
+ }
+{/wksegueslide}
+
 {wkbulletslide}
   {
     "title" : {
@@ -142,3 +155,163 @@
     ]
   }
 {/wkbulletslide}
+
+{wksegueslide}
+ {
+   "title" : "Code Slides"
+ }
+{/wksegueslide}
+
+{slide}
+{wkheadergroup}
+ {
+   "title" : "JSON Code",
+   "subtitle" : "Chrome Theme"
+ }
+{/wkheadergroup}
+{wkcode}
+   {
+      "language" : "json",
+      "theme" : "chrome",
+      "code" : "
+{
+  &quot;a&quot; : &quot;b&quot;,
+  &quot;c&quot; : [ &quot;d&quot;, &quot;e&quot;, &quot;f&quot; ]
+}
+"     
+   }
+{/wkcode}
+{/slide}
+
+{slide}
+{wkheadergroup}
+ {
+   "title" : "JSON Code",
+   "subtitle" : "Ambiance Theme"
+ }
+{/wkheadergroup}
+{wkcode}
+   {
+      "language" : "json",
+      "theme" : "ambiance",
+      "gutter" : "false",
+      "code" : "
+{
+  &quot;a&quot; : &quot;b&quot;,
+  &quot;c&quot; : [ &quot;d&quot;, &quot;e&quot;, &quot;f&quot; ]
+}
+"     
+   }
+{/wkcode}
+{/slide}
+
+{slide}
+{wkheadergroup}
+ {
+   "title" : "XML Code",
+   "subtitle" : "Chrome Theme"
+ }
+{/wkheadergroup}
+{wkcode}
+   {
+      "language" : "xml",
+      "theme" : "chrome",
+      "code" : "
+&lt;config&gt;
+  &lt;option&gt;a&lt;/option&gt;
+  &lt;option&gt;b&lt;/option&gt;
+  &lt;parameters&gt;
+     &lt;parameter required=&quot;true&quot;&gt;
+       &lt;name&gt;x&lt;/name&gt;
+       &lt;default&gt;10&lt;/default&gt;
+     &lt;/parameter&gt;
+  &lt;/parameters&gt;
+&lt;/config&gt;
+"     
+   }
+{/wkcode}
+{/slide}
+
+{slide}
+{wkheadergroup}
+ {
+   "title" : "Turtle",
+   "subtitle" : "Textmate Theme"
+ }
+{/wkheadergroup}
+{wkcode}
+   {
+      "language" : "turtle",
+      "theme" : "textmate",
+      "code" : "
+@base &lt;http://example.org/base/&gt; .
+@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
+@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .
+@prefix ex: &lt;http://example.org/stuff/1.0/&gt; .
+
+&lt;http://www.w3.org/TR/rdf-syntax-grammar&gt;
+  dc:title &quot;RDF/XML Syntax Specification (Revised)&quot; ;
+  ex:editor [
+    ex:fullname &quot;Dave Beckett&quot;;
+    ex:homePage &lt;http://purl.org/net/dajobe/&gt;
+  ] .
+"     
+   }
+{/wkcode}
+{/slide}
+
+{slide}
+{wkheadergroup}
+ {
+   "title" : "Sparql",
+   "subtitle" : "Textmate Theme"
+ }
+{/wkheadergroup}
+{wkcode}
+   {
+      "language" : "sparql",
+      "theme" : "textmate",
+      "code" : "
+BASE          &lt;http://example.org/book/&gt;
+PREFIX :      &lt;http://example.com/&gt;
+PREFIX foaf:  &lt;http://xmlns.com/foaf/0.1/&gt;
+
+SELECT ?name ?mbox
+WHERE {
+  ?x foaf:name ?name .
+  ?x foaf:mbox ?mbox
+}
+"     
+   }
+{/wkcode}
+{/slide}
+
+{wksegueslide}
+ {
+   "title" : "Asciidoc Slides"
+ }
+{/wksegueslide}
+
+{slide}
+{html}<hgroup><h2>Asciidoc</h2></hgroup>{/html}
+{wikiref}res:/res/slides/wink/common/asciidoc1.txt{/wikiref}
+{/slide}
+
+{slide}
+{html}<hgroup><h2>Asciidoc</h2></hgroup>{/html}
+{wikiref}res:/res/slides/wink/common/asciidoc2.txt{/wikiref}
+{/slide}
+
+{slide}
+{html}<hgroup><h2>Asciidoc</h2></hgroup>{/html}
+{wikiref}res:/res/slides/wink/common/asciidoc3.txt{/wikiref}
+{/slide}
+
+{slide}
+{html}<hgroup><h2>Asciidoc</h2></hgroup>{/html}
+{wikiref}res:/res/slides/wink/common/asciidoc4.txt{/wikiref}
+{/slide}
+
+{wkacebootstrap}
+{/wkacebootstrap}
+

@@ -19,8 +19,8 @@ try {
   imageStyle = j?.image.style
   licenseURL = j?.license?.url
   licenseText = j?.license?.text
-  creditURL = j?.credit.url
-  creditText = j?.credit.text
+  creditURL = j?.credit?.url
+  creditText = j?.credit?.text
     
   titleSection = ""
   subtitleSection = ""

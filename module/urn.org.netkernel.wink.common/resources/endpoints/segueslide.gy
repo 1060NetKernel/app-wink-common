@@ -1,0 +1,43 @@
+import org.netkernel.layer0.nkf.*
+import java.util.regex.*
+import org.json.*;
+import groovy.json.JsonSlurper
+  
+slide = ""
+  
+try {
+  json=context.source("arg:operand", String.class);
+  //Tidy up any whitespace to prevent "unterminated string literal" in JSON parser
+  json=json.replaceAll("\\n", " ")
+  json=json.replaceAll("\\r", " ")
+  
+  j = new JsonSlurper().parseText(json)
+  
+  title = j?.title
+  subtitle = j?.subtitle
+  imageURL = j?.image?.url
+    
+  if(imageURL == null) {
+    imageURL = "/wink/res/wink/common/img/cross.png"
+  }
+  
+  if(subtitle == null) {
+    subtitle = ""
+  }
+  
+  slide="""
+    <slide class="segue dark nobackground">
+        <aside class="gdbar"><img src="${imageURL}"/></aside>
+        <hgroup class="auto-fadein">
+            <h2>${title}</h2>
+            <h3>${subtitle}</h3>
+        </hgroup>
+    </slide>
+    """
+} catch(Throwable t) {
+  slide="""
+    <slide><pre style='color: red;'>${t.getMessage()}</pre></slide>
+  """
+}
+    
+context.createResponseFrom(slide.toString())
