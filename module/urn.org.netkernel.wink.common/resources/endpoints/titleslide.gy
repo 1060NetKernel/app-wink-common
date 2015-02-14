@@ -47,13 +47,14 @@ try {
     first = false
   }
   
-  additionalLogoSection = ""
+  if(imageURL == null) {
+    imageURL = "/wink/res/wink/common/img/cross.png"
+  }
   
   slide="""
     <slide class="title-slide segue nobackground">
-    <aside class="gdbar"><img src="/wink/res/wink/common/img/cross.png"/>
+    <aside class="gdbar"><img src="${imageURL}"/>
     </aside>
-    ${additionalLogoSection}
     <hgroup class="auto-fadein">
        ${titleSection}
        ${authorSection}

@@ -1,0 +1,33 @@
+import org.netkernel.layer0.nkf.*
+import java.util.regex.*
+import org.json.*;
+import groovy.json.JsonSlurper
+  
+block = ""
+  
+try {
+  json=context.source("arg:operand", String.class);
+  //Tidy up any whitespace to prevent "unterminated string literal" in JSON parser
+//  json=json.replaceAll("\\n", " ")
+//  json=json.replaceAll("\\r", " ")
+  
+  j = new JsonSlurper().parseText(json)
+    
+  title = j?.title
+  subtitle = j?.subtitle
+    
+  subtitleSection = subtitle ? """<h3>${subtitle}</h3>""" : ""
+  
+  block="""
+    <hgroup>
+      <h2>${title}</h2>
+      ${subtitleSection}
+    </hgroup>
+  """
+} catch(Throwable t) {
+  block="""
+    <slide><pre style='color: red;'>${t.getMessage()}</pre></slide>
+  """
+}
+    
+context.createResponseFrom(block.toString())

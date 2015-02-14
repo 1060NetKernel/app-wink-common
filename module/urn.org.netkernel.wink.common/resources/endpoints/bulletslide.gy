@@ -47,7 +47,7 @@ try {
               }
             }
           } else {
-            println "WAT"
+            throw new Error("Unexpected bullet type")
           }
         }
       }

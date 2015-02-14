@@ -61,7 +61,7 @@ try {
       }
       
       licenseSection = """
-        License: <a href="${licenseURL}">${licenseText}</a>
+        License: <a href="${licenseURL}" class="white slidelinks" style="text-decoration: none;">${licenseText}</a>
       """
     }
     
@@ -71,12 +71,12 @@ try {
       }
       
       creditSection = """
-        Credit: <a href="${creditURL}">${creditText}</a>
+        Credit: <a href="${creditURL}" class="white slidelinks" style="text-decoration: none;">${creditText}</a>
       """
     }
       
     footerSection = """
-      <footer class="source white" style="margin-top: 5px;">
+      <footer class="source white" style="margin-top: 5px; background-color: #555555;">
           <p>${creditSection}</p>
           <p>${licenseSection}</p>
       </footer>
@@ -84,7 +84,7 @@ try {
   }
   
   slide="""
-  <slide class="fill nobackground" style="background-image: url(${imageURL}); -webkit-background-size: cover; background-size: cover; -webkit-print-color-adjust: exact;a">
+  <slide class="fill nobackground" style="background-image: url(${imageURL}); -webkit-background-size: cover; background-size: cover; -webkit-print-color-adjust: exact;">
     <article class="flexbox ${titleloc}">${titleSection}</article>
     ${footerSection}
   </slide>
