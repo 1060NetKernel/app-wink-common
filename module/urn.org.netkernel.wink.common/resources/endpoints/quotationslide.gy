@@ -1,0 +1,39 @@
+import org.netkernel.layer0.nkf.*
+import java.util.regex.*
+import org.json.*;
+import groovy.json.JsonSlurper
+import groovy.xml.MarkupBuilder
+
+json=context.source("arg:operand", String.class);
+//Tidy up any whitespace to prevent "unterminated string literal" in JSON parser
+json=json.replaceAll("\\n", " ")
+json=json.replaceAll("\\r", " ")
+
+j = new JsonSlurper().parseText(json)
+
+quotation = j.quotation
+author = j.author ? j.author : ""
+source = j.source ? j.source : ""
+
+qstyle = quotation.length() > 200 ? "font-size: 100%;" : ""
+
+sw = new StringWriter()
+mb = new MarkupBuilder(sw)
+
+mb.slide(class : "dark quote nobackground") {
+    article(class: "flexbox vleft") {
+        q(style: "${qstyle}", quotation)
+        div(class : "author", author) {
+        }
+        
+        if(source.length() >= 0) {
+            div(class : "source", source, style : "font-style : italic") {
+                
+            }
+        }
+    }
+}
+
+println sw.toString()
+
+context.createResponseFrom(sw.toString());
