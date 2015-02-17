@@ -17,8 +17,18 @@ try {
   theme = j?.theme
   code = j?.code
   build = j?.build
-    
-  style = ""
+  style = j?.style
+  gutter = j?.gutter
+
+  if(style == null) {
+    style = "margin-top: 20px;"
+  }
+  
+  if(gutter == null || gutter == "false") {
+    gutter = "false"
+  } else {
+    gutter = "true"
+  }
     
   // Convert a boolean flag into either an empty string or
   // an indicator that we want the code block to be shown
@@ -27,12 +37,11 @@ try {
     build = ""
   } else {
     build = "build"
-    style = "margin-top: 10px;"
   }
   
   block="""
     <div class="code ${build}" ace-mode="ace/mode/${language}" 
-      ace-theme="ace/theme/${theme}" ace-gutter="true" style="${style}">
+      ace-theme="ace/theme/${theme}" ace-gutter="${gutter}" style="${style}">
     ${code}
     </div>    
   """

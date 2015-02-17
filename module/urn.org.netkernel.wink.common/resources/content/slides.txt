@@ -107,6 +107,13 @@
    }
 {/wkfullscreenimageslide}
 
+{wkquotationslide}
+{
+   "quotation" : "Through 20 years of effort, we've successfully trained everyone to use passwords that are hard for humans to remember, but easy for computers to guess.",
+   "author" : "http://xkcd.com/936/"
+}
+{/wkquotationslide}
+
 {wksegueslide}
  {
    "title" : "Bullet Slides"
@@ -276,9 +283,9 @@ BASE          &lt;http://example.org/book/&gt;
 PREFIX :      &lt;http://example.com/&gt;
 PREFIX foaf:  &lt;http://xmlns.com/foaf/0.1/&gt;
 
-SELECT ?name ?mbox
+SELECT ?mbox
 WHERE {
-  ?x foaf:name ?name .
+  ?x foaf:name &quot;Brian Sletten&quot; .
   ?x foaf:mbox ?mbox
 }
 "     
